@@ -132,5 +132,17 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+## REVIEWS
+
+Review.destroy_all
+
+Review.create(:user_id => "1", :product_id => "35", :description => "This thing sucks!", :rating => 1)
+Review.create(:user_id => "1", :product_id => "36", :description => "Waste of money, returned it almost instantly...", :rating => 2)
+Review.create(:user_id => "1", :product_id => "37", :description => "Mind. Blown. Use it everyday!", :rating => 5)
+Review.create(:user_id => "2", :product_id => "36", :description => "Woah, this tech is amazing!", :rating => 4)
+Review.create(:user_id => "2", :product_id => "37", :description => "Changed my life the inovation of sliced bread babyyyyy!", :rating => 5)
+Review.create(:user_id => "2", :product_id => "38", :description => "I love this!!", :rating => 4)
+
+
 
 puts "DONE!"
