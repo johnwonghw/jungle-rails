@@ -25,11 +25,31 @@
         </dl>
       </div>
     </div>
+
+    <div>
+      <%= form_for [@product, Review.new] do |form| %>
+        <%= form.label :rating %>
+        <%= form.select(:rating, ['1', '2', '3', '4', '5']) %><br />
+
+        <%= form.label :description %> <br>
+        <%= form.text_area(:description, rows: 5, cols: 40) %><br />
+
+        <%= form.submit %>
+      <% end %>
+    </div>
+
+    <div>
     <% @product.reviews.each do |review| %>
       <p><%= review.user.first_name + " " + review.user.last_name %></p>
       <p>Review: <%= review.description %></p>
       <p>Ratings: <%= review.rating %></p>
     <% end %>
+    </div>
+    <div>  
+    <% if flash[:notice] %>
+      <div class="notice"><%= flash[:notice] %></div>
+    <% end %>
+    </div>
   </article>
 
 </section>
