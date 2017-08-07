@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  before_filter :require_login
+
   def create
     @product = Product.find(params[:product_id])
     @review = Review.new(review_params)
@@ -22,4 +24,11 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:user_id, :description, :rating)
   end
+
+    def require_login
+    unless current_user
+    redirect_to '/', notice: "You must be logged in to access this section"
+    end
+  end
+
 end

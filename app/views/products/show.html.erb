@@ -39,23 +39,40 @@
     </div>
     <% end %>
 
-    <div>
-    <% @product.reviews.reverse.each do |review| %>
-      <p><%= review.user.first_name + " " + review.user.last_name %></p>
-      <p>Review: <%= review.description %></p>
-      <p>Ratings: <%= review.rating %></p>
-      <% if current_user == review.user %>
-        <%= link_to fa_icon('trash'), review_path(review.id), class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
-      <% end %>
-
-
-    <% end %>
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>Reviews</h3>
     </div>
-    <div>  
+  </div>
+  <% @product.reviews.reverse.each do |review| %>
+    <div class="container">
+      <div class="row">
+        <% if current_user == review.user %>
+          <%= link_to fa_icon('trash'), review_path(review.id), class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
+        <% end %>
+        <div class="col-sm-1">
+          <div class="thumbnail">
+            <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+          </div>
+        </div>
+        <div class="col-sm-5">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <strong><%= review.user.first_name + " " + review.user.last_name %></strong> <span class="text-muted">Ratings: <%= review.rating %></span>
+            </div>
+            <div class="panel-body"><%= review.description %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>    
+  <% end %>
+    
+  <div>  
     <% if flash[:notice] %>
       <div class="notice"><%= flash[:notice] %></div>
     <% end %>
-    </div>
+  </div>
   </article>
 
 </section>
