@@ -9,6 +9,7 @@ RSpec.describe Product, type: :model do
       @product.category = @category
     end
 
+
     it "should have a name" do
       expect(@product).to be_valid
       expect(@badproduct.errors.messages[:name]).to include("can't be blank")
